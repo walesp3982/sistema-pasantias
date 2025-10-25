@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phones_companies', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id")->constrained();
-            $table->string("phone_code");
-            $table->string("cargo");
-            $table->string("owner_name");
+            $table->foreignId("cities_id")->constrained();
+            $table->string("street");
             $table->foreignId("company_id")->constrained();
-            $table->timestamp("created_in");
             $table->boolean("active")->default(true);
+            $table->timestamps();
+
+
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('phones_companies');
+        Schema::dropIfExists('locations');
     }
 };

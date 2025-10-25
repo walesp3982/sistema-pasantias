@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phones_companies', function (Blueprint $table) {
+        Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id")->constrained();
-            $table->string("phone_code");
-            $table->string("cargo");
-            $table->string("owner_name");
             $table->foreignId("company_id")->constrained();
-            $table->timestamp("created_in");
-            $table->boolean("active")->default(true);
+            $table->string("name")->nullable();
+            $table->string("description");
+            $table->date("start_date");
+            $table->date("end_date");
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('phones_companies');
+        Schema::dropIfExists('agreements');
     }
 };

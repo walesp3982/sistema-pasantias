@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->uuid("uuid")->unique()->index();
             $table->string("name");
-            $table->string("ruta");
             $table->string("path");
             $table->string("path_thumbnail")->nullable();
             $table->string("path_medium");
@@ -23,7 +22,7 @@ return new class extends Migration
             $table->integer("height");
             $table->integer("width");
             $table->integer("size");
-            $table->timestamp("hash")->nullable()->index();
+            $table->string("hash")->nullable()->index();
             $table->string("disco")->default("public");
             $table->foreignId("user_id")->constrained()->cascadeOnDelete();
             $table->timestamps();
