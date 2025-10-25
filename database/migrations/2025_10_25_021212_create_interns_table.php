@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('types_reports', function(Blueprint $table) {
+        Schema::create('type_reports', function(Blueprint $table) {
             $table->id();
             $table->string("name");
             $table->enum("status", ["low", "medium", "high"]);
@@ -37,6 +37,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('report');
+        Schema::dropIfExists('type_reports');
         Schema::dropIfExists('interns');
     }
 };

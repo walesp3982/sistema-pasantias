@@ -11,6 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('sector_companies', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+        });
+
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string("name");
@@ -18,8 +23,20 @@ return new class extends Migration
             $table->enum("type-company",
                 ["Sole Proprietorship", "Partnership", "Corporation", "LLC"]);
             $table->string("email");
+            $table->foreignId("sector_id")->constrained("sector_companies");
+
             $table->timestamps();
         });
+        Schema::create('logo_companies', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId("company_id")->constrained();
+            $table->foreignId("picture_id")->constrained();
+            $table->boolean("active")->default(true);
+
+            $table->index(['company_id', 'picture_id']);
+
+        });
+
     }
 
     /**
@@ -27,6 +44,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('logo_companies');
         Schema::dropIfExists('companies');
+        Schema::dropIfExists('sector_companies');
+
     }
 };

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->year("year");
             $table->integer("period");
             // Garantizamos que sea YYYY-1 o YYYY-2
-            $table->check("period IN (1,2)");
         });
         Schema::create('students', function (Blueprint $table) {
             $table->id();
@@ -41,7 +40,7 @@ return new class extends Migration
             $table->enum("status",["finish", "active", "abandoned"]);
             $table->timestamps();
 
-            $table->index(["student_id", "management_id", "career_id", "semester"]);
+            $table->index(["student_id", "management_id", "career_id", "semester"], "std_mng_car_sem_index");
         });
     }
 
@@ -52,6 +51,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('managements_students');
         Schema::dropIfExists('students');
-        Schema::dropIfExists('managements');
+        Schema::dropIfExists('management');
     }
 };

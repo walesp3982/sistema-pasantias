@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('types_documents', function(Blueprint $table) {
+        Schema::create('type_documents', function(Blueprint $table) {
             $table->id();
             $table->string("name");
         });
@@ -42,10 +42,10 @@ return new class extends Migration
                 ->nullable();
         });
 
-        Schema::table('postulations_documents', function(Blueprint $table){
+        Schema::create('postulations_documents', function(Blueprint $table){
             $table->id();
             $table->foreignId("postulations_id")->constrained();
-            $table->foreignId("documents")->constrained();
+            $table->foreignId("documents_id")->constrained();
             $table->index(['postulations_id', 'documents_id']);
         });
 
@@ -57,9 +57,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('students', function(Blueprint $table) {
-
+            $table->dropForeign(['cv_auto']);
         });
+        Schema::table('interships', function(Blueprint $table) {
+            $table->dropForeign(['call']);
+        });
+        Schema::dropIfExists('postulations_documents');
+
         Schema::dropIfExists('documents');
+        Schema::dropIfExists('type_documents');
 
     }
 };

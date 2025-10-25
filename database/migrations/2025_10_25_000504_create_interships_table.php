@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date("start_date");
             $table->date("end_date");
             $table->foreignId("agreement_id")->constrained();
-            $table->timestamps("descriptions");
+            $table->timestamps();
             $table->enum("status", ["open", "closed", "suspend"]);
             $table->foreignId("location_id")->constrained();
         });
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
         });
-        Schema::create("times_interships", function(Blueprint $table) {
+        Schema::create("time_interships", function(Blueprint $table) {
             $table->id();
             $table->time("entry_time");
             $table->time("exit_time");
@@ -45,8 +45,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('careers_interships');
-        Schema::dropIfExists('times_interships');
-        Schema::dropIfExists('carrers');
+        Schema::dropIfExists('time_interships');
+        Schema::dropIfExists('careers');
         Schema::dropIfExists('interships');
     }
 };

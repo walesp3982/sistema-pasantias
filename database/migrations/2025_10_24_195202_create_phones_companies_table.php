@@ -21,6 +21,15 @@ return new class extends Migration
             $table->timestamp("created_in");
             $table->boolean("active")->default(true);
         });
+        Schema::create('channels', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+        });
+        Schema::create('channels_phones', function (Blueprint $table) {
+            $table->foreignId("phone_id")->constrained("phones_companies")->cascadeOnDelete();
+            $table->foreignId("channel_id")->constrained()->cascadeOnDelete();
+            $table->index(["phone_id", "channel_id"]);
+        });
     }
 
     /**
@@ -28,6 +37,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('channels_phones');
+        Schema::dropIfExists('channels');
         Schema::dropIfExists('phones_companies');
     }
 };
