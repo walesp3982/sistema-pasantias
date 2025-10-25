@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId("student_id")->constrained();
             $table->enum("status", $statusArray);
             $table->timestamps();
+            $table->index(["intership_id", "student_id"]);
         });
         Schema::create('history_postulations', function (Blueprint $table)
         use($statusArray) {

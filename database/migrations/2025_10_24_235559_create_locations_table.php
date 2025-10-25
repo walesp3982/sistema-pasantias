@@ -18,8 +18,7 @@ return new class extends Migration
             $table->foreignId("company_id")->constrained();
             $table->boolean("active")->default(true);
             $table->timestamps();
-
-
+            $table->index(["cities_id", "company_id", "street"]);
         });
     }
 
