@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignId("type_document_id")->constrained();
             $table->timestamps();
             $table->softDeletes();
+            $table->boolean("fake");
         });
 
         Schema::table('students', function (Blueprint $table) {
