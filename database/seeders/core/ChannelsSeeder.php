@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Core;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,6 +22,6 @@ class ChannelsSeeder extends Seeder
         foreach(ChannelPhone::cases() as $channel){
             $this->newChannel($channel->value);
         }
-        // Agregar si existe más...
+        // Agregar si existe más en App\Enums\ChannelPhone enum...
     }
 }

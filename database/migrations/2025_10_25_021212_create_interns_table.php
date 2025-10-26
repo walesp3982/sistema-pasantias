@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId("postulation_id")->constrained();
             $table->enum("status", ["wait","progress", "finish", "abandoned"]);
+            $table->date("start_date");
+            $table->date("finish_date");
+            $table->date("extend_date")->nullable();
+
             $table->timestamps();
         });
 
