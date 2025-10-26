@@ -24,17 +24,8 @@ return new class extends Migration
                 ["Sole Proprietorship", "Partnership", "Corporation", "LLC"]);
             $table->string("email");
             $table->foreignId("sector_id")->constrained("sector_companies");
-
+            $table->foreignId("logo_id")->constrained("pictures")->nullable();
             $table->timestamps();
-        });
-        Schema::create('logo_companies', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("company_id")->constrained();
-            $table->foreignId("picture_id")->constrained();
-            $table->boolean("active")->default(true);
-
-            $table->index(['company_id', 'picture_id']);
-
         });
 
     }

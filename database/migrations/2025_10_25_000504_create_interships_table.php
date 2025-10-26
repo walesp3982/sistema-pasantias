@@ -18,23 +18,21 @@ return new class extends Migration
             $table->foreignId("agreement_id")->constrained();
             $table->timestamps();
             $table->enum("status", ["open", "closed", "suspend"]);
-            $table->foreignId("location_id")->constrained();
         });
         Schema::create("careers", function(Blueprint $table) {
             $table->id();
             $table->string("name");
         });
-        Schema::create("time_interships", function(Blueprint $table) {
-            $table->id();
-            $table->time("entry_time");
-            $table->time("exit_time");
-        });
-        Schema::create("careers_interships", function(Blueprint $table) {
+        Schema::create("requirements_interships", function(Blueprint $table) {
             $table->id();
             $table->foreignId("career_id")->constrained();
             $table->foreignId("intership_id")->constrained();
-            $table->foreignId("time_intership_id")->constrained();
+            $table->foreignId("location_id")->constrained();
+            $table->foreignId("entry_time")->nullable();
+            $table->foreignId("exit_time")->nullable();
+            $table->timestamps();
             $table->integer("vacant");
+            $table->index(["career_id", "intership_id", "location_id"], "car_inter_loc_time_index");
         });
 
     }
@@ -44,8 +42,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('careers_interships');
-        Schema::dropIfExists('time_interships');
+        Schema::dropIfExists('requirements_interships');
         Schema::dropIfExists('careers');
         Schema::dropIfExists('interships');
     }

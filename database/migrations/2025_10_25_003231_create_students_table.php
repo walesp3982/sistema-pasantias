@@ -30,13 +30,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('shift_students', function(Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->time("entry_time");
+            $table->time("exit_time");
+        });
+
         Schema::create('managements_students', function(Blueprint $table) {
             $table->id();
             $table->foreignId("student_id")->constrained();
             $table->foreignId("management_id")->constrained();
             $table->foreignId("career_id")->constrained();
-            $table->integer("semester");
 
+            $table->integer("semester");
+            $table->foreignId("shift_student_id")->constrained();
             $table->enum("status",["finish", "active", "abandoned"]);
             $table->timestamps();
 
@@ -50,6 +58,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('managements_students');
+        Schema::dropIfExists('shift_students');
         Schema::dropIfExists('students');
         Schema::dropIfExists('management');
     }
