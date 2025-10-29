@@ -28,6 +28,26 @@ return new class extends Migration
             $table->date('end_date');
             $table->enum('status', ["pending", "progress", "finished", "suspend"]);
         });
+
+        Schema::create("careers", function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+        });
+
+        Schema::create("intership_requirements", function(Blueprint $table) {
+            $table->id();
+            $table->foreignId("intership_id")->constrained();
+            $table->foreignId("career_id")->constrained();
+            $table->foreignId("location_id")->constrained();
+            $table->string("role_intership")->nullable();
+            $table->time("entry_time");
+            $table->time("exit_time");
+            $table->integer("vacant");
+            $table->timestamps();
+
+            $table->index(["career_id", "intership_id", "location_id"]);
+        });
+
     }
 
     /**
@@ -35,7 +55,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agreements');
+        Schema::dropIfExists('intership_requirements');
+        Schema::dropIfExists('careers');
         Schema::dropIfExists('interships');
+        Schema::dropIfExists('agreements');
+
     }
 };
