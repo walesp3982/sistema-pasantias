@@ -11,6 +11,7 @@ return [
 	*/
 
 	'allowed_countries' => [
+        // South American Countries (I am bilingue ajjajajajj)
         'AR',
         'BO',
         'BR',
@@ -23,6 +24,8 @@ return [
         'SR',
         'UY',
         'VE',
+
+        // Other countries importants
         'US',
         'FR',
         'ES',
