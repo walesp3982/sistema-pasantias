@@ -16,11 +16,14 @@ return new class extends Migration
             $table->string("first_name");
             $table->string("last_name");
             $table->boolean("active");
+            $table->boolean("notifications");
             $table->string("identity_card");
             $table->foreignId("profile_id")
-                ->constrained("pictures")->nullable();
+                ->constrained("pictures")
+                ->nullable();
             $table->foreignId("curriculum_vitae_id")
-                ->constrained('documents')->nullable();
+                ->constrained('documents')
+                ->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
@@ -31,13 +34,19 @@ return new class extends Migration
             $table->integer("number");
         });
 
+        Schema::create("shifts", function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->time("entry_time");
+            $table->time("exit_time");
+        });
 
         Schema::create("managements_students", function (Blueprint $table) {
             $table->id();
             $table->foreignId("student_id")->constrained();
             $table->foreignId("management_id")->constrained();
             $table->foreignId("career_id")->constrained();
-            $table->enum("shift", ["morning", "afternonn", "nigth"]);
+            $table->foreignId("shifts_id")->constrained();
             $table->timestamps();
         });
     }
@@ -47,9 +56,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-
         Schema::dropIfExists('managements_students');
-        Schema::dropIfExists('managements');
+        Schema::dropIfExists('shifts');
+        Schema::dropIfExists('management');
         Schema::dropIfExists('students');
     }
 };
