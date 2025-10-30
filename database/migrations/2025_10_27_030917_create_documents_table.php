@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_documents', function(Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("name")->unique();
         });
 
         Schema::create('documents', function (Blueprint $table) {
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('extension');
             $table->string('path');
             $table->integer('size');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('type_document_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('type_document_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
 

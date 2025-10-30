@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('path_thumbnail');
             $table->string('path_medium');
             $table->string('extension');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer("height");
             $table->integer("width");
             $table->integer("size");
@@ -34,21 +34,23 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
-            $table->foreignId("sector_id")->constrained();
+            $table->foreignId("sector_id")->constrained()->onDelete('cascade');
             $table->string("email")->unique();
-            $table->foreignId("logo_id")->constrained("pictures");
+            $table->foreignId("logo_id")->constrained("pictures")->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('phones', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id")->constrained();
-            $table->string("phone_number");
+            $table->foreignId("country_id")->constrained()->onDelete('cascade');
+            $table->integer("phone_number");
+
+            $table->unique('country_id', 'phone_number');
         });
 
         Schema::create('company_phones', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("company_id")->constrained();
+            $table->foreignId("company_id")->constrained()->onDelete('cascade');
             $table->foreignId("phone_id")->constrained();
             $table->string("name_owner")->nullable();
             $table->boolean("active")->default(true);
@@ -61,23 +63,24 @@ return new class extends Migration
 
         Schema::create('channels_phones', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("phone_id")->constrained();
-            $table->foreignId("channel_id")->constrained();
+            $table->foreignId("phone_id")->constrained()->onDelete('cascade');
+            $table->foreignId("channel_id")->constrained()->onDelete('cascade');
             $table->index(["phone_id", "channel_id"]);
         });
 
         Schema::create('locations', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("city_id")->constrained();
-            $table->foreignId("zone")->nullable();
+            $table->foreignId("city_id")->constrained()->onDelete('cascade');
+            $table->foreignId("zone")->nullable()->onDelete('cascade');
+            $table->string("street");
         });
 
         Schema::create('company_locations', function(Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->foreignId('phone_id')->nullable();
+            $table->foreignId('phone_id')->nullable()->onDelete('cascade');
             $table->index(["location_id", "company_id"]);
         });
     }

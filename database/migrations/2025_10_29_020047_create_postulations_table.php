@@ -15,8 +15,8 @@ return new class extends Migration
         // mostrar solo ciertas pasantía a los estudiantes
         Schema::create('interships_students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained();
-            $table->foreignId('intership_id')->constrained();
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->foreignId('intership_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->unique(["student_id", "intership_id"]);
         });
@@ -26,8 +26,8 @@ return new class extends Migration
         Schema::create('postulations', function (Blueprint $table)
         use ($status_postulation) {
             $table->id();
-            $table->foreignId('student_id')->constrained();
-            $table->foreignId('intership_id')->constrained();
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->foreignId('intership_id')->constrained()->onDelete('cascade');
             $table->enum('status', $status_postulation);
             $table->timestamps();
         });
@@ -35,22 +35,22 @@ return new class extends Migration
         Schema::create('history_postulations', function (Blueprint $table)
         use ($status_postulation) {
             $table->id();
-            $table->foreignId("postulation_id")->constrained();
+            $table->foreignId("postulation_id")->constrained()->onDelete('cascade');
             $table->enum('last_status', $status_postulation);
             $table->enum('new_status', $status_postulation);
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamp('time_modify');
         });
 
         Schema::create('interns', function(Blueprint $table) {
             $table->id();
-            $table->foreignId('postulation_id')->constrained();
+            $table->foreignId('postulation_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['wait', 'active', 'finished', 'abandoned']);
         });
 
         Schema::create('type_reports', function(Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("name")->unique();
             $table->boolean('generated');
             $table->enum('class', ['good', 'bad']);
         });
@@ -59,10 +59,10 @@ return new class extends Migration
             $table->id();
             $table->string("descripcion");
             $table->string("autor");
-            $table->foreignId('type_report_id')->constrained();
+            $table->foreignId('type_report_id')->constrained()->onDelete('cascade');
             $table->date('date_create');
-            $table->foreignId('intern_id')->constrained();
-            $table->foreignId('document_id')->constrained();
+            $table->foreignId('intern_id')->constrained()->onDelete('cascade');
+            $table->foreignId('document_id')->constrained()->onDelete('cascade');
         });
     }
 
