@@ -23,6 +23,11 @@ return new class extends Migration
 
         $status_postulation = ['send', 'verified', 'redo', 'reject', 'accept'];
 
+        Schema::create('type_document_postulations', function(Blueprint $table) {
+            $table->id();
+            $table->string("name")->unique();
+        });
+
         Schema::create('postulations', function (Blueprint $table)
         use ($status_postulation) {
             $table->id();
@@ -30,6 +35,15 @@ return new class extends Migration
             $table->foreignId('intership_id')->constrained()->onDelete('cascade');
             $table->enum('status', $status_postulation);
             $table->timestamps();
+        });
+
+        Schema::create('document_postulations', function(Blueprint $table) {
+            $table->id();
+            $table->foreignId('postulation_id')->constrained();
+            $table->foreignId('type_document_postulation_id')->constrained();
+            $table->foreignId('document_id')->constrained();
+            $table->unique(['postulation_id', 'type_document_postulation_id'], 'postulation_id_type_doc_unique');
+            $table->boolean('verify')->default(false);
         });
 
         Schema::create('history_postulations', function (Blueprint $table)
@@ -63,6 +77,7 @@ return new class extends Migration
             $table->date('date_create');
             $table->foreignId('intern_id')->constrained()->onDelete('cascade');
             $table->foreignId('document_id')->constrained()->onDelete('cascade');
+            $table->boolean('verify')->default(false);
         });
     }
 
@@ -75,7 +90,9 @@ return new class extends Migration
         Schema::dropIfExists('type_reports');
         Schema::dropIfExists('interns');
         Schema::dropIfExists('history_postulations');
+        Schema::dropIfExists('document_postulations');
         Schema::dropIfExists('postulations');
+        Schema::dropIfExists('type_document_postulations');
         Schema::dropIfExists('interships_students');
 
     }
