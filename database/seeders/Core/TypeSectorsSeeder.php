@@ -4,6 +4,7 @@ namespace Database\Seeders\Core;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TypeSectorsSeeder extends Seeder
 {
@@ -106,5 +107,11 @@ class TypeSectorsSeeder extends Seeder
             'Reportería/Medios de Comunicación',
             'Otros',
         ];
+
+        foreach ($sectors as $sector) {
+            DB::table('sector')->insert([
+                'name' => $sector
+            ]);
+        }
     }
 }
