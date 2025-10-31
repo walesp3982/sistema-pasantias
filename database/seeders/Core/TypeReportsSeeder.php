@@ -32,7 +32,7 @@ class TypeReportsSeeder extends Seeder
         ];
 
         foreach($BadReports as $report) {
-            DB::table('type_report')->insert([
+            DB::table('type_reports')->insert([
                 'name' => $report,
                 'class' => 'bad'
             ]);

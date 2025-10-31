@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Database\Seeders\Core\CarrersSeeder;
+use Database\Seeders\Core\CareersSeeder;
 use Database\Seeders\Core\ChannelsSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // Core seeder
             WorldSeeder::class,
-            CarrersSeeder::class,
+            CareersSeeder::class,
             TypeReportsSeeder::class,
             ChannelsSeeder::class,
             ShiftsSeeder::class,

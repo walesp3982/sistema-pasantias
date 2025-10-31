@@ -20,7 +20,7 @@ class ShiftsSeeder extends Seeder
             'exit_time' => Carbon::parse('12:30')->format('H:i:s')
         ]);
 
-        DB::table('shift')->insert([
+        DB::table('shifts')->insert([
             'name' => 'tarde',
             'entry_time' => Carbon::parse('13:30')->format('H:i:s'),
             'exit_time' => Carbon::parse('18:15')->format('H:i:s')

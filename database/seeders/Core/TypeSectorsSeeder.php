@@ -109,7 +109,7 @@ class TypeSectorsSeeder extends Seeder
         ];
 
         foreach ($sectors as $sector) {
-            DB::table('sector')->insert([
+            DB::table('sectors')->insert([
                 'name' => $sector
             ]);
         }
