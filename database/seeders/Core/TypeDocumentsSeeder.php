@@ -25,7 +25,7 @@ class TypeDocumentsSeeder extends Seeder
         ];
 
         foreach($documentsCarrers as $doc) {
-            DB::table('type_documents')->insert([
+            DB::table('type_document_postulations')->insert([
                 'name' => $doc,
             ]);
         }
