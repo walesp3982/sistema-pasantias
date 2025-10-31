@@ -20,11 +20,13 @@ return new class extends Migration
             $table->string("identity_card");
             $table->foreignId("profile_id")
                 ->constrained("pictures")
-                ->nullable();
+                ->nullable()
+                ->onDelete('cascade');
             $table->foreignId("curriculum_vitae_id")
                 ->constrained('documents')
-                ->nullable();
-            $table->foreignId('user_id')->constrained();
+                ->nullable()
+                ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -43,10 +45,10 @@ return new class extends Migration
 
         Schema::create("managements_students", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("student_id")->constrained();
-            $table->foreignId("management_id")->constrained();
-            $table->foreignId("career_id")->constrained();
-            $table->foreignId("shifts_id")->constrained();
+            $table->foreignId("student_id")->constrained()->onDelete('cascade');
+            $table->foreignId("management_id")->constrained()->onDelete('cascade');
+            $table->foreignId("career_id")->constrained()->onDelete('cascade');
+            $table->foreignId("shifts_id")->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

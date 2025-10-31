@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string("title");
-            $table->string("description")->nullable();
+            $table->text("description")->nullable();
             $table->date("start_date");
             $table->date("end_date");
         });
         Schema::create('interships', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('agreement_id')->constrained();
+            $table->foreignId('agreement_id')->constrained()->onDelete('cascade');
             $table->date('start_date');
             $table->date('postulation_limit_date');
             $table->date('end_date');
@@ -31,14 +31,15 @@ return new class extends Migration
 
         Schema::create("careers", function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("name")->unique();
         });
 
         Schema::create("intership_requirements", function(Blueprint $table) {
             $table->id();
-            $table->foreignId("intership_id")->constrained();
-            $table->foreignId("career_id")->constrained();
-            $table->foreignId("location_id")->constrained();
+            $table->foreignId("intership_id")->constrained()->onDelete('cascade');
+            $table->foreignId("career_id")->constrained()->onDelete('cascade');
+            $table->foreignId("location_id")->constrained()->onDelete('cascade');
+            $table->text("description")->nullable();
             $table->string("role_intership")->nullable();
             $table->time("entry_time");
             $table->time("exit_time");

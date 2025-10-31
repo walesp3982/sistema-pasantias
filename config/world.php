@@ -10,7 +10,28 @@ return [
 	|--------------------------------------------------------------------------
 	*/
 
-	'allowed_countries' => [],
+	'allowed_countries' => [
+        // South American Countries (I am bilingue ajjajajajj)
+        'AR',
+        'BO',
+        'BR',
+        'CL',
+        'CO',
+        'EC',
+        'GY',
+        'PY',
+        'PE',
+        'SR',
+        'UY',
+        'VE',
+
+        // Other countries importants
+        'US',
+        'FR',
+        'ES',
+        'PT'
+
+    ],
 
 	/*
 	|--------------------------------------------------------------------------
