@@ -9,6 +9,7 @@ use Database\Seeders\Core\ChannelsSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Core\PermissionSeeder;
 use Database\Seeders\Core\ShiftsSeeder;
+use Database\Seeders\Core\TypeDocumentsSeeder;
 use Database\Seeders\Core\TypeReportsSeeder;
 use Database\Seeders\Core\TypeSectorsSeeder;
 
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ShiftsSeeder::class,
             TypeSectorsSeeder::class,
             PermissionSeeder::class,
+            TypeDocumentsSeeder::class
         ]);
     }
 }
