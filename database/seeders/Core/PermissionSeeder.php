@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Core;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -16,7 +17,6 @@ class PermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Crear permisos y guardar referencias
-        $perms = [];
         $permissions = [
             'register intership',
             'register company',
@@ -45,6 +45,12 @@ class PermissionSeeder extends Seeder
         $student = Role::create(['name' => 'student']);
         $student->givePermissionTo(['create postulation', 'edit profile']);
 
+        $user = User::factory()->create([
+            'name' => 'estudiante prueba',
+            'email' => 'estudiante@gmail.com'
+        ]);
+        $user->assignRole($student);
+
         $careerDept = Role::create(['name' => 'careerDepartment']);
         $careerDept->givePermissionTo([
             'register student',
@@ -54,6 +60,11 @@ class PermissionSeeder extends Seeder
             'register reports',
             'show stadistics'
         ]);
+        $user = User::factory()->create([
+            'name' => 'dirección carrera',
+            'email' => 'career@gmail.com'
+        ]);
+        $user->assignRole($careerDept);
 
         $agreementsDept = Role::create(['name' => 'agreementsDeparment']);
         $agreementsDept->givePermissionTo([
@@ -62,6 +73,11 @@ class PermissionSeeder extends Seeder
             'register intership',
             'show stadistics'
         ]);
+        $user = User::factory()->create([
+            'name' => 'dirección de convenios',
+            'email' => '@gmail.com'
+        ]);
+        $user->assignRole($agreementsDept);
 
         $admin = Role::create(['name' => 'admin']);
         $admin->givePermissionTo([
@@ -69,8 +85,18 @@ class PermissionSeeder extends Seeder
             'register members career',
             'register members agreement'
         ]);
+        $user = User::factory()->create([
+            'name' => 'admin prueba',
+            'email' => 'admin@gmail.com'
+        ]);
+        $user->assignRole($admin);
 
         $superAdmin = Role::create(['name' => 'Super-Admin']);
         $superAdmin->givePermissionTo(Permission::all());
+        $user = User::factory()->create([
+            'name' => 'superadmin prueba',
+            'email' => 'superadmin@gmail.com'
+        ]);
+        $user->assignRole($superAdmin);
     }
 }
