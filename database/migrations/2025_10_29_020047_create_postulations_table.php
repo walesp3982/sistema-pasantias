@@ -65,7 +65,6 @@ return new class extends Migration
         Schema::create('type_reports', function(Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
-            $table->boolean('generated');
             $table->enum('class', ['good', 'bad']);
         });
 

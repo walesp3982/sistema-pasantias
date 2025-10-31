@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CarrersSeeder extends Seeder
+class CareersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class CarrersSeeder extends Seeder
     public function run(): void
     {
         //
-        $carrers = [
+        $careers = [
             'Ciencias de la educación',
             'Ingenieria de Sistemas',
             'Contaduría Pública',
@@ -27,8 +27,8 @@ class CarrersSeeder extends Seeder
             'Gastronomia y Gestión de Restaurantes'
         ];
 
-        foreach ($carrers as $career) {
-            DB::table('carrers')->insert([
+        foreach ($careers as $career) {
+            DB::table('careers')->insert([
                 'name' => $career
             ]);
         }
