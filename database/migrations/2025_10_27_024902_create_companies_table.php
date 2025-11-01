@@ -68,7 +68,7 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->foreignId('phone_id')->nullable()->onDelete('cascade');
+            $table->foreignId('company_phone_id')->nullable()->onDelete('cascade');
             $table->index(["location_id", "company_id"]);
         });
     }
