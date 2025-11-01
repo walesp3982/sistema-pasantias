@@ -59,7 +59,7 @@ return new class extends Migration
         Schema::create('locations', function(Blueprint $table) {
             $table->id();
             $table->foreignId("city_id")->constrained()->onDelete('cascade');
-            $table->foreignId("zone")->nullable()->onDelete('cascade');
+            $table->string("zone")->nullable();
             $table->string("street");
         });
 
@@ -68,7 +68,7 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->foreignId('company_phone_id')->nullable()->onDelete('cascade');
+            $table->foreignId('company_phone_id')->onDelete('cascade')->nullable();
             $table->index(["location_id", "company_id"]);
         });
     }

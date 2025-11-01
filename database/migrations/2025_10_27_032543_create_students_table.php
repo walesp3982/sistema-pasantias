@@ -18,21 +18,21 @@ return new class extends Migration
             $table->boolean("active");
             $table->boolean("notifications");
             $table->string("identity_card");
-            $table->foreignId("phone_id")
+            $table->foreignId("phone_id")->constrained();
+            $table->foreignId("location_id")
                 ->nullable()
                 ->constrained();
-            $table->foreignId("location_id")
-                ->constrained()
-                ->nullable();
             $table->foreignId("profile_id")
-                ->constrained("pictures")
                 ->nullable()
+                ->constrained("pictures")
                 ->onDelete('cascade');
             $table->foreignId("curriculum_vitae_id")
-                ->constrained('documents')
                 ->nullable()
+                ->constrained('documents')
                 ->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->timestamps();
         });
 
