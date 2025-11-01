@@ -18,7 +18,12 @@ return new class extends Migration
             $table->boolean("active");
             $table->boolean("notifications");
             $table->string("identity_card");
-            $table->foreignId("location_id");
+            $table->foreignId("phone_id")
+                ->constrained()
+                ->nullable();
+            $table->foreignId("location_id")
+                ->constrained()
+                ->nullable();
             $table->foreignId("profile_id")
                 ->constrained("pictures")
                 ->nullable()
