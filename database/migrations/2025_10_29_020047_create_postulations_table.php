@@ -13,7 +13,7 @@ return new class extends Migration
     {
         // Tabla que sirve para que los usuario de dirección de carreras puede
         // mostrar solo ciertas pasantía a los estudiantes
-        Schema::create('interships_students', function (Blueprint $table) {
+        Schema::create('intership_show_students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('intership_id')->constrained()->onDelete('cascade');
@@ -92,7 +92,7 @@ return new class extends Migration
         Schema::dropIfExists('document_postulations');
         Schema::dropIfExists('postulations');
         Schema::dropIfExists('type_document_postulations');
-        Schema::dropIfExists('interships_students');
+        Schema::dropIfExists('intership_show_students');
 
     }
 };

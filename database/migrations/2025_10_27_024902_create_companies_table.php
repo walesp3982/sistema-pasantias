@@ -56,18 +56,6 @@ return new class extends Migration
             $table->boolean("active")->default(true);
         });
 
-        Schema::create('channels', function(Blueprint $table) {
-            $table->id();
-            $table->string("name");
-        });
-
-        Schema::create('channels_phones', function(Blueprint $table) {
-            $table->id();
-            $table->foreignId("phone_id")->constrained()->onDelete('cascade');
-            $table->foreignId("channel_id")->constrained()->onDelete('cascade');
-            $table->index(["phone_id", "channel_id"]);
-        });
-
         Schema::create('locations', function(Blueprint $table) {
             $table->id();
             $table->foreignId("city_id")->constrained()->onDelete('cascade');
@@ -80,7 +68,7 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->foreignId('phone_id')->nullable()->onDelete('cascade');
+            $table->foreignId('company_phone_id')->nullable()->onDelete('cascade');
             $table->index(["location_id", "company_id"]);
         });
     }
@@ -92,8 +80,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('company_locations');
         Schema::dropIfExists('locations');
-        Schema::dropIfExists('channels_phones');
-        Schema::dropIfExists('channels');
         Schema::dropIfExists('company_phones');
         Schema::dropIfExists('phones');
         Schema::dropIfExists('companies');
