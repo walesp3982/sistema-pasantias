@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Database\Seeders\Core\CareersSeeder;
-use Database\Seeders\Core\ChannelsSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Core\PermissionSeeder;
@@ -26,7 +25,6 @@ class DatabaseSeeder extends Seeder
             WorldSeeder::class,
             CareersSeeder::class,
             TypeReportsSeeder::class,
-            ChannelsSeeder::class,
             ShiftsSeeder::class,
             TypeSectorsSeeder::class,
             PermissionSeeder::class,
