@@ -22,10 +22,6 @@ return new class extends Migration
             $table->foreignId("location_id")
                 ->nullable()
                 ->constrained();
-            $table->foreignId("profile_id")
-                ->nullable()
-                ->constrained("pictures")
-                ->onDelete('cascade');
             $table->foreignId("curriculum_vitae_id")
                 ->nullable()
                 ->constrained('documents')
