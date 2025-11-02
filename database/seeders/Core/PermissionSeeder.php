@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Core;
 
+use App\Enums\RolesEnum;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,7 +15,7 @@ class PermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Crear permisos y guardar referencias
         $permissions = [
@@ -42,7 +43,7 @@ class PermissionSeeder extends Seeder
 
 
         // Ahora crear roles y asignar permisos
-        $student = Role::create(['name' => 'student']);
+        $student = Role::create(['name' => RolesEnum::STUDENT->value]);
         $student->givePermissionTo(['create postulation', 'edit profile']);
 
         $user = User::factory()->create([
@@ -51,7 +52,7 @@ class PermissionSeeder extends Seeder
         ]);
         $user->assignRole($student);
 
-        $careerDept = Role::create(['name' => 'careerDepartment']);
+        $careerDept = Role::create(['name' => RolesEnum::CAREER->value]);
         $careerDept->givePermissionTo([
             'register student',
             'publish intership',
@@ -66,7 +67,7 @@ class PermissionSeeder extends Seeder
         ]);
         $user->assignRole($careerDept);
 
-        $agreementsDept = Role::create(['name' => 'agreementsDeparment']);
+        $agreementsDept = Role::create(['name' => RolesEnum::AGREEMENTS->value]);
         $agreementsDept->givePermissionTo([
             'register company',
             'register agreements company',
@@ -79,7 +80,7 @@ class PermissionSeeder extends Seeder
         ]);
         $user->assignRole($agreementsDept);
 
-        $admin = Role::create(['name' => 'admin']);
+        $admin = Role::create(['name' => RolesEnum::ADMIN]);
         $admin->givePermissionTo([
             'register career',
             'register members career',
