@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("first_name");
             $table->string("last_name");
-            $table->boolean("active");
-            $table->boolean("notifications");
             $table->string("identity_card");
             $table->foreignId("phone_id")->constrained();
             $table->foreignId("location_id")

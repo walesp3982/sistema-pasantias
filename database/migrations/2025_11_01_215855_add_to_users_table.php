@@ -17,6 +17,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('pictures')
                 ->onDelete('cascade');
+            $table->boolean('active')->default(true);
         });
     }
 
@@ -28,6 +29,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->dropColumn('profile_id');
+            $table->dropColumn('active');
         });
     }
 };
