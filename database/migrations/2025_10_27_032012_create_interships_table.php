@@ -33,23 +33,13 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('postulation_limit_date');
             $table->date('end_date');
-            $table->enum('status', ["pending", "progress", "finished", "suspend"]);
-        });
-
-
-
-        Schema::create("intership_locations", function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("intership_id")->constrained()->onDelete('cascade');
-            $table->foreignId("company_location_id")->constrained()->onDelete('cascade');
-            $table->text("description")->nullable();
-            $table->string("role_intership")->nullable();
             $table->time("entry_time");
             $table->time("exit_time");
             $table->integer("vacant");
-            $table->timestamps();
-
-            $table->index(["company_location_id", "intership_id"], "index");
+            $table->string("description")->nullable();
+            $table->foreignId('company_location_id')
+                ->constrained('company_location');
+            $table->enum('status', ["pending", "progress", "finished", "suspend"]);
         });
     }
 
@@ -58,7 +48,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('intership_locations');
         Schema::dropIfExists('interships');
         Schema::dropIfExists('careers');
         Schema::dropIfExists('agreements');

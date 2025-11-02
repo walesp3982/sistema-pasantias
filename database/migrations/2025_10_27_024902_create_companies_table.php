@@ -34,26 +34,23 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
-            $table->foreignId("sector_id")->constrained()->onDelete('cascade');
+            $table->foreignId("sector_id")
+                ->constrained()
+                ->onDelete('cascade');
             $table->string("email")->unique();
-            $table->foreignId("logo_id")->constrained("pictures")->onDelete('cascade');
+            $table->foreignId("logo_id")
+                ->constrained("pictures")
+                ->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('phones', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id")->constrained()->onDelete('cascade');
+            $table->foreignId("country_id")
+                ->constrained()
+                ->onDelete('cascade');
             $table->integer("phone_number");
-
             $table->unique('country_id', 'phone_number');
-        });
-
-        Schema::create('company_phones', function(Blueprint $table) {
-            $table->id();
-            $table->foreignId("company_id")->constrained()->onDelete('cascade');
-            $table->foreignId("phone_id")->constrained();
-            $table->string("name_owner")->nullable();
-            $table->boolean("active")->default(true);
         });
 
         Schema::create('locations', function(Blueprint $table) {
@@ -63,12 +60,13 @@ return new class extends Migration
             $table->string("street");
         });
 
-        Schema::create('company_locations', function(Blueprint $table) {
+        Schema::create('company_location', function(Blueprint $table) {
             $table->id();
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->foreignId('company_phone_id')->onDelete('cascade')->nullable();
+            $table->foreignId('phone_id')->constrained()->onDelete('cascade')->nullable();
+            $table->string("name_administrador");
             $table->index(["location_id", "company_id"]);
         });
     }
@@ -80,7 +78,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('company_locations');
         Schema::dropIfExists('locations');
-        Schema::dropIfExists('company_phones');
         Schema::dropIfExists('phones');
         Schema::dropIfExists('companies');
         Schema::dropIfExists('sectors');
