@@ -16,7 +16,7 @@ class StudentService
     public function __construct(
         private readonly StudentRepositoryInterface $studentRepository,
         private readonly UserService $userService,
-        private readonly PhoneRepository $phoneRepository
+        private readonly PhoneService $phoneService
     ) {}
 
     public function create(array $data): Student
@@ -35,7 +35,7 @@ class StudentService
                 'last_name' => $data['last_name'],
                 'identity_card' => $data['identity_card']
             ]);
-            $phone = $this->phoneRepository->create(
+            $phone = $this->phoneService->create(
                 [
                     'country_id' => $data['country_id'],
                     'phone_number' => $data['phone_number']
