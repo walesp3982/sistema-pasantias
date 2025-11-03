@@ -71,6 +71,10 @@ class User extends Authenticatable
         ]);
     }
 
+    public function profile() {
+        return $this->hasOne(Picture::class);
+    }
+
     #[Scope]
     protected function active(Builder $query): void {
         $query->where('active', true);
