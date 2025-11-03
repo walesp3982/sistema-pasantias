@@ -25,9 +25,12 @@ return new class extends Migration
                 ->constrained('documents')
                 ->onDelete('cascade');
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->onDelete('cascade');
             $table->timestamps();
+
+            $table->unique(['first_name', 'last_name']);
         });
 
         Schema::create("management", function (Blueprint $table) {

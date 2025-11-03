@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StatePostulationEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $status_postulation = ['send', 'verified', 'redo', 'reject', 'accept'];
+        $status_postulation = StatePostulationEnum::cases();
 
         Schema::create('type_document_postulations', function(Blueprint $table) {
             $table->id();
@@ -23,7 +24,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('intership_id')->constrained()->onDelete('cascade');
-            $table->enum('status', $status_postulation);
+            $table->enum('status', $status_postulation)
+                ->default(StatePostulationEnum::CREATED);
             $table->timestamps();
         });
 

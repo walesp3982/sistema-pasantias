@@ -49,7 +49,7 @@ return new class extends Migration
             $table->foreignId("country_id")
                 ->constrained()
                 ->onDelete('cascade');
-            $table->integer("phone_number");
+            $table->string("phone_number", 10);
             $table->unique('country_id', 'phone_number');
         });
 
