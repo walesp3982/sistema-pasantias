@@ -12,24 +12,24 @@ return [
 
 	'allowed_countries' => [
         // South American Countries (I am bilingue ajjajajajj)
-        'AR',
+        // 'AR',
         'BO',
-        'BR',
-        'CL',
-        'CO',
-        'EC',
-        'GY',
-        'PY',
-        'PE',
-        'SR',
-        'UY',
-        'VE',
+        // 'BR',
+        // 'CL',
+        // 'CO',
+        // 'EC',
+        // 'GY',
+        // 'PY',
+        // 'PE',
+        // 'SR',
+        // 'UY',
+        // 'VE',
 
         // Other countries importants
-        'US',
-        'FR',
-        'ES',
-        'PT'
+        // 'US',
+        // 'FR',
+        // 'ES',
+        // 'PT'
 
     ],
 
