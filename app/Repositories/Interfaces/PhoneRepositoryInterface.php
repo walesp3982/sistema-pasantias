@@ -10,7 +10,9 @@ interface PhoneRepositoryInterface {
 
     public function get(int $id): ?Phone;
 
-    public function findByCountry(int $idCountry): Collection;
+    public function findByCountry(int $country_id): Collection;
 
     public function search(string $code): Collection;
+
+    public function find(string $phone_number, int $country_id): bool;
 }

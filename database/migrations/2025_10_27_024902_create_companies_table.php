@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->uuid()->unique();
             $table->string('name');
-            $table->string('description');
-            $table->string('path');
-            $table->string('path_thumbnail');
-            $table->string('path_medium');
+            $table->string('path')->nullable();
+            $table->string('path_thumbnail')->nullable();
+            $table->string('path_medium')->nullable();
             $table->string('extension');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer("height");

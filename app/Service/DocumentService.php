@@ -11,13 +11,13 @@ use Illuminate\Support\Str;
 
 class DocumentService
 {
-    private string $path = "documents";
+    private string $path = "documents/";
     public function __construct(
         private readonly DocumentRepository $documentRepository
     ) {}
 
     private function fullPath(string $name, string $extension):string {
-        return $this->path."/".$name.".".$extension;
+        return $this->path . $name . "." . $extension;
     }
     public function save(UploadedFile $file): Document
     {
@@ -50,12 +50,18 @@ class DocumentService
         return $document;
     }
 
-    public function get(int $idDocument) {
+    public function download(int $idDocument) {
         $document = $this->documentRepository->get($idDocument);
 
         $finalPath = $this->fullPath($document->uuid, $document->extension);
         $originalName = $document->name;
         return Storage::download($finalPath, $originalName);
+    }
+
+    public function getFile($idDocument) {
+        $document = $this->documentRepository->get($idDocument);
+        $path = $this->fullPath($document->uuid, $document->extension);
+        return $path;
     }
 
     public function delete(int $idDocument) {

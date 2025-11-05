@@ -10,7 +10,7 @@ class DocumentRepository implements DocumentRepositoryInterface{
 
     }
     public function create(array $data):Document {
-        $document = $this->model->create();
+        $document = $this->model->create($data);
         return $document;
     }
 
