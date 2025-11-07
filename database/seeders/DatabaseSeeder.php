@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Database\Seeders\Core\CareersSeeder;
+use Database\Seeders\Core\GeographySeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Seeders\Core\UpdateBoliviaStatesToSpanishSeeder;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call([
             // Core seeder
+            GeographySeeder::class,
             CareersSeeder::class,
             TypeReportsSeeder::class,
             ShiftsSeeder::class,

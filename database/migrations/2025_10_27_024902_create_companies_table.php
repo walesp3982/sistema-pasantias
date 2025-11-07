@@ -45,18 +45,29 @@ return new class extends Migration
 
         Schema::create('phones', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id")
-                ->constrained()
-                ->onDelete('cascade');
+            $table->integer("code_number", false)->default(591);
             $table->string("phone_number", 10);
-            $table->unique('country_id', 'phone_number');
+            $table->boolean("notifications");
+        });
+
+        Schema::create('municipalities', function(Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->integer("total_district");
+        });
+
+        Schema::create('zones', function(Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->integer("district_number");
+            $table->foreignId('municipality_id')->constrained()->onDelete('cascade');
         });
 
         Schema::create('locations', function(Blueprint $table) {
             $table->id();
-            $table->foreignId("city_id")->constrained()->onDelete('cascade');
-            $table->string("zone")->nullable();
+            $table->foreignId("zone_id")->constrained()->onDelete('cascade');
             $table->string("street");
+            $table->integer("number_door");
         });
 
         Schema::create('company_location', function(Blueprint $table) {
@@ -77,6 +88,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('company_locations');
         Schema::dropIfExists('locations');
+        Schema::dropIfExists('zones');
+        Schema::dropIfExists('municipalities');
         Schema::dropIfExists('phones');
         Schema::dropIfExists('companies');
         Schema::dropIfExists('sectors');
