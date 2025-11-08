@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Information\Location;
+use App\Models\Information\Phone;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -35,6 +36,6 @@ class CompanyLocationDetail extends Model
     }
 
     public function phone() {
-        return $this->morphTo();
+        return $this->belongsTo(Phone::class);
     }
 }

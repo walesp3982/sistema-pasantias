@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Files\Picture;
 use App\Models\Information\Location;
+use App\Models\Information\Phone;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -36,5 +37,8 @@ class Company extends Model
         return $this->hasMany(Intership::class);
     }
 
+    public function phones() {
+        return $this->morphMany(Phone::class, 'phoneable');
+    }
 
 }

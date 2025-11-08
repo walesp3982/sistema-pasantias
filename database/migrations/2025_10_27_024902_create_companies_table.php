@@ -77,6 +77,7 @@ return new class extends Migration
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
             $table->string("name_administrador");
+            $table->foreignId('phone_id')->nullable()->constrained();
             $table->index(["location_id", "company_id"]);
         });
     }

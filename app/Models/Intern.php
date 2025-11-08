@@ -18,4 +18,8 @@ class Intern extends Model
     public function student() {
         return $this->hasOneThrough(Student::class, Postulation::class);
     }
+
+    public function company() {
+        return $this->hasOneThrough(Company::class, Postulation::class);
+    }
 }
