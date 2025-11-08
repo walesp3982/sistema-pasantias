@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Postulation;
+namespace App\Models;
 
 use App\Enums\StatePostulationEnum;
 use App\Models\Intership;

@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Files\Document;
 use App\Models\Information\Location;
 use App\Models\Information\Phone;
-use App\Models\Postulation\Postulation;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model

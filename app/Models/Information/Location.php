@@ -5,7 +5,7 @@ namespace App\Models\Information;
 use App\Models\Company;
 use App\Models\CompanyLocationDetail;
 use App\Models\Geography\Zone;
-use App\Models\Postulation\Postulation;
+use App\Models\Postulation;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
 class Location extends Model

@@ -73,7 +73,7 @@ class User extends Authenticatable
     }
 
     public function profile() {
-        return $this->hasOne(Picture::class);
+        return $this->morphOne(Picture::class,'pictureable');
     }
 
     #[Scope]

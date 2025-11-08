@@ -2,7 +2,7 @@
 
 namespace App\Models\Files;
 
-use App\Models\Postulation\Postulation;
+use App\Models\Postulation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 

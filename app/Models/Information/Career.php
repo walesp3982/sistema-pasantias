@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Information;
 
+use App\Models\Postulation;
 use Illuminate\Database\Eloquent\Model;
 
 class Career extends Model

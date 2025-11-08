@@ -14,4 +14,8 @@ class Picture extends Model
         'name',
         'description',
     ];
+
+    public function pictureable() {
+        return $this->morphTo();
+    }
 }

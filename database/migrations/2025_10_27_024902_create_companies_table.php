@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer("height");
             $table->integer("width");
             $table->integer("size");
+            $table->morphs('pictureable');
         });
 
         Schema::create('sectors', function (Blueprint $table) {

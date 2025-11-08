@@ -201,7 +201,42 @@ class ImagenService
         return $file;
     }
 
-    public function delete(int $id) {
+    public function deletePictureOriginal(Picture $picture) {
+        $path = $this->getImagenOriginalPath($picture);
 
+        if(Storage::exists($picture)) {
+            Storage::delete($path);
+        }
+        else {
+            throw new \Exception("Image original no encontrada");
+        }
+    }
+
+    public function deletePictureMedium(Picture $picture) {
+        $path = $this->getImagenMediumPath($picture);
+
+        if(Storage::exists($path)) {
+            Storage::delete($path);
+        }
+    }
+
+    public function deletePictureThumbnail(Picture $picture) {
+        $path = $this->getImagenThumbnailPath($picture);
+
+        if(Storage::exists($path)) {
+            Storage::delete($path);
+        }
+    }
+    public function delete(int $idPicture) {
+        $picture = $this->pictureRepository->get($idPicture);
+        if(is_null($picture)) {
+            throw new \Exception("No se encontró la imagen");
+        }
+
+        $this->deletePictureOriginal($picture);
+        $this->deletePictureMedium($picture);
+        $this->deletePictureThumbnail($picture);
+
+        return $this->pictureRepository->delete($idPicture);
     }
 }

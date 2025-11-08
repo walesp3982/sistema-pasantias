@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Information\Career;
 use App\Models\Information\Location;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
