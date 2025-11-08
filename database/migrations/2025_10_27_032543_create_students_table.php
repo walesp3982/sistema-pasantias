@@ -33,7 +33,7 @@ return new class extends Migration
             $table->unique(['first_name', 'last_name']);
         });
 
-        Schema::create("management", function (Blueprint $table) {
+        Schema::create("managements", function (Blueprint $table) {
             $table->id();
             $table->year("year");
             $table->integer("number");
@@ -63,7 +63,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('managements_students');
         Schema::dropIfExists('shifts');
-        Schema::dropIfExists('management');
+        Schema::dropIfExists('managements');
         Schema::dropIfExists('students');
     }
 };

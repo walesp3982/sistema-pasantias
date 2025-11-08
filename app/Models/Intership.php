@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Information\Location;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Intership extends Model
 {
     //
+    protected $casts = [
+        "active" => "boolean",
+    ];
+
     public function agreement() {
         return $this->belongsTo(Agreement::class);
     }
@@ -16,6 +23,11 @@ class Intership extends Model
     }
 
     public function location() {
-        return $this->hasMany(Postulation::class);
+        return $this->belongsTo(Location::class);
+    }
+
+    #[Scope]
+    public function active(Builder $query) {
+        return $query->where("active", true);
     }
 }

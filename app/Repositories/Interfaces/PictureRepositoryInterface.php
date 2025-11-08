@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\Picture;
+use App\Models\Files\Picture;
 
 interface PictureRepositoryInterface {
     public function create(array $data): Picture;

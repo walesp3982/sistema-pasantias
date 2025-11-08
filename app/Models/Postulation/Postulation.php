@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Postulation;
 
 use App\Enums\StatePostulationEnum;
+use App\Models\Intership;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
 
 class Postulation extends Model

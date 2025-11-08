@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Document;
+use App\Models\Files\Document;
 use App\Repositories\Interfaces\DocumentRepositoryInterface;
 
 class DocumentRepository implements DocumentRepositoryInterface{

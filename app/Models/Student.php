@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Files\Document;
+use App\Models\Information\Location;
+use App\Models\Information\Phone;
+use App\Models\Postulation\Postulation;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
@@ -29,8 +33,9 @@ class Student extends Model
     }
 
     public function location() {
-        return $this->belongsTo(Location::class);
+        return $this->morphOne(Location::class, 'locatable');
     }
+
 
     public function curriculum_vitae() {
         return $this->belongsTo(Document::class);

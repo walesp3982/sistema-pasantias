@@ -37,8 +37,8 @@ return new class extends Migration
             $table->time("exit_time");
             $table->integer("vacant");
             $table->string("description")->nullable();
-            $table->foreignId('company_location_id')
-                ->constrained('company_location');
+            $table->foreignId('location_id')
+                ->constrained();
             $table->enum('status', ["pending", "progress", "finished", "suspend"]);
         });
     }

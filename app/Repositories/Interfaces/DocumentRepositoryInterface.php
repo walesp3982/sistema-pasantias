@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\Document;
+use App\Models\Files\Document;
 
 interface DocumentRepositoryInterface {
     public function create(array $data): Document;

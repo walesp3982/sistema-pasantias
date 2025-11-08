@@ -67,10 +67,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId("zone_id")->constrained()->onDelete('cascade');
             $table->string("street");
+            $table->morphs('locatable');
+            $table->string('reference')->nullable();
             $table->integer("number_door");
         });
 
-        Schema::create('company_location', function(Blueprint $table) {
+        Schema::create('company_location_details', function(Blueprint $table) {
             $table->id();
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');

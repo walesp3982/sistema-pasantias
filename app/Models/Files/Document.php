@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Files;
 
+use App\Models\Postulation\Postulation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
@@ -20,6 +22,11 @@ class Document extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function postulation() {
+        return $this->hasOne(Postulation::class);
+    }
+
 
 
 }

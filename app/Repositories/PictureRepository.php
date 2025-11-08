@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Picture;
+use App\Models\Files\Picture;
 use App\Repositories\Interfaces\PictureRepositoryInterface;
 
 class PictureRepository implements PictureRepositoryInterface{

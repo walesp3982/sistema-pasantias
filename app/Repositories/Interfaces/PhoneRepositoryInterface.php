@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\Phone;
+use App\Models\Information\Phone;
 use Illuminate\Database\Eloquent\Collection;
 
 interface PhoneRepositoryInterface {
