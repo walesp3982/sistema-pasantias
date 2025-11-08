@@ -4,6 +4,10 @@
     <title>Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -31,6 +35,36 @@
     <section class="h-[calc(100vh-80px)] flex items-center justify-center bg-gray-100">
         {{ $slot }}
     </section>
-</body>
+
+     @livewireScripts
+    
+    <script>
+        // Prevenir caché del navegador en páginas de autenticación
+        window.onpageshow = function(event) {
+            if (event.persisted || 
+                (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        };
+    </script>
+    {{-- <script>
+        // Interceptar errores de Livewire
+        document.addEventListener('livewire:init', () => {
+            Livewire.hook('request', ({ fail }) => {
+                fail(({ status, preventDefault }) => {
+                    // Si es error 419 (CSRF token expirado)
+                    if (status === 419) {
+                        preventDefault();
+                        
+                        // Mostrar mensaje opcional
+                        alert('Tu sesión ha expirado. La página se recargará.');
+                        
+                        // Recargar la página
+                        window.location.reload();
+                    }
+                });
+            });
+        });
+    </script> --}}
 
 </html>

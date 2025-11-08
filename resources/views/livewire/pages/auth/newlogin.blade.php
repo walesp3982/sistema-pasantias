@@ -19,7 +19,7 @@ new #[Layout('layouts.register')] class extends Component {
 
     Session::regenerate();
 
-    $this->redirect(route(name: 'dashboard', absolute: false), navigate: true);
+    $this->redirect(route(name: 'dashboard'), navigate: true);
   }
 }; ?>
 
@@ -33,6 +33,7 @@ new #[Layout('layouts.register')] class extends Component {
       <h1 class="text-3xl font-bold text-gray-800 mb-6">Login</h1>
 
       <form wire:submit="login">
+        @csrf
         <!-- Dirección de correo-->
         <div class="mb-4">
           <label for="email" class="block text-gray-600 mb-2">Correo electrónico</label>
