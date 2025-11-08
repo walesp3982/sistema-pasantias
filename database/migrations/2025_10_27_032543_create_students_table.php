@@ -15,25 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string("first_name");
             $table->string("last_name");
-            $table->boolean("active");
-            $table->boolean("notifications");
             $table->string("identity_card");
-            $table->foreignId("phone_id")
-                ->constrained()
-                ->nullable();
-            $table->foreignId("location_id")
-                ->constrained()
-                ->nullable();
-            $table->foreignId("profile_id")
-                ->constrained("pictures")
+            $table->foreignId("phone_id")->constrained();
+            $table->foreignId('user_id')
                 ->nullable()
+                ->constrained()
                 ->onDelete('cascade');
-            $table->foreignId("curriculum_vitae_id")
-                ->constrained('documents')
-                ->nullable()
-                ->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            $table->unique(['first_name', 'last_name']);
         });
 
         Schema::create("management", function (Blueprint $table) {

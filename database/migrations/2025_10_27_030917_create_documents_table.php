@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('path');
             $table->integer('size');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->morphs('documentable');
             $table->timestamps();
         });
 

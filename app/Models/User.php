@@ -3,6 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Files\Picture;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -60,5 +64,20 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    public function setActive(bool $value):bool {
+        return $this->update([
+            'active' => $value
+        ]);
+    }
+
+    public function profile() {
+        return $this->morphOne(Picture::class,'pictureable');
+    }
+
+    #[Scope]
+    protected function active(Builder $query): void {
+        $query->where('active', true);
     }
 }
