@@ -27,6 +27,10 @@ class Document extends Model
         return $this->hasOne(Postulation::class);
     }
 
+    public function documentable() {
+        return $this->morphTo();
+    }
+
 
 
 }

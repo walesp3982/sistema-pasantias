@@ -14,6 +14,10 @@ class Postulation extends Model
         return $this->belongsTo(Student::class);
     }
 
+    public function documents() {
+        return $this->hasMany(DocumentPostulation::class);
+    }
+
     public function intership() {
         return $this->belongsTo(Intership::class);
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Files\Document;
 use App\Models\Information\Location;
+use App\Models\Information\Management;
 use App\Models\Information\Phone;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,20 +29,19 @@ class Student extends Model
     }
 
     public function phone() {
-        return $this->belongsTo(Phone::class);
+        return $this->morphTo(Phone::class);
     }
 
     public function location() {
         return $this->morphOne(Location::class, 'locatable');
     }
 
-
-    public function curriculum_vitae() {
-        return $this->belongsTo(Document::class);
-    }
-
     public function postulations() {
         return $this->hasMany(Postulation::class);
+    }
+
+    public function managements() {
+        return $this->hasMany(Management::class);
     }
 
     public function getFullNameAttribute() {

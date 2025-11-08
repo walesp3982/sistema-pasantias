@@ -33,7 +33,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('postulation_id')->constrained();
             $table->foreignId('type_document_postulation_id')->constrained();
-            $table->foreignId('document_id')->constrained();
             $table->unique(['postulation_id', 'type_document_postulation_id'], 'postulation_id_type_doc_unique');
             $table->boolean('verify')->default(false);
         });

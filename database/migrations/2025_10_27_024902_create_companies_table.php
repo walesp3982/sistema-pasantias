@@ -38,14 +38,12 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->string("email")->unique();
-            $table->foreignId("logo_id")
-                ->constrained("pictures")
-                ->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('phones', function(Blueprint $table) {
             $table->id();
+            $table->morphs('phoneable');
             $table->integer("code_number", false)->default(591);
             $table->string("phone_number", 10);
             $table->boolean("notifications");
@@ -78,7 +76,6 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
-            $table->foreignId('phone_id')->constrained()->onDelete('cascade')->nullable();
             $table->string("name_administrador");
             $table->index(["location_id", "company_id"]);
         });

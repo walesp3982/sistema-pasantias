@@ -14,7 +14,6 @@ class CompanyLocationDetail extends Model
         'location_id',
         'company_id',
         'active',
-        'phone_id',
         'name_administrator',
     ];
 
@@ -33,5 +32,9 @@ class CompanyLocationDetail extends Model
     #[Scope]
     public function active(Builder $query) {
         return $query->where('active', true);
+    }
+
+    public function phone() {
+        return $this->morphTo();
     }
 }

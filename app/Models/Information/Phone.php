@@ -12,4 +12,10 @@ class Phone extends Model
         'country_id',
         'phone_number'
     ];
+
+    public function phoneable() {
+        return $this->morphTo();
+    }
+
+
 }

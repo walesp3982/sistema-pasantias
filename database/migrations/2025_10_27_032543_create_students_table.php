@@ -17,13 +17,6 @@ return new class extends Migration
             $table->string("last_name");
             $table->string("identity_card");
             $table->foreignId("phone_id")->constrained();
-            $table->foreignId("location_id")
-                ->nullable()
-                ->constrained();
-            $table->foreignId("curriculum_vitae_id")
-                ->nullable()
-                ->constrained('documents')
-                ->onDelete('cascade');
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained()
@@ -33,7 +26,7 @@ return new class extends Migration
             $table->unique(['first_name', 'last_name']);
         });
 
-        Schema::create("managements", function (Blueprint $table) {
+        Schema::create("management", function (Blueprint $table) {
             $table->id();
             $table->year("year");
             $table->integer("number");
@@ -63,7 +56,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('managements_students');
         Schema::dropIfExists('shifts');
-        Schema::dropIfExists('managements');
+        Schema::dropIfExists('management');
         Schema::dropIfExists('students');
     }
 };
