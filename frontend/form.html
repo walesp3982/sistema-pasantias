@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Pasantía</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4ff; 
+      margin: 0;
+      padding: 0;
+    }
+
+    .contenedor {
+      width: 90%;
+      max-width: 600px;
+      background: #ffffff;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+      border-top: 6px solid #007BFF; 
+      border-bottom: 6px solid #FF9800; 
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF; 
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #FF9800;
+      box-shadow: 0 0 5px rgba(255, 152, 0, 0.4);
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #FF9800;
+    }
+
+    .mensaje {
+      margin-top: 15px;
+      text-align: center;
+      color: #FF9800;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+    <h1>Formulario de Pasantía</h1>
+
+    <form id="formPasantia">
+      
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+
+      <label for="ci">Carnet de identidad / ID:</label>
+      <input type="text" id="ci" name="ci" placeholder="Ej: 6543210" required>
+
+      <label for="ru">RU (código universitario):</label>
+      <input type="text" id="ru" name="ru" placeholder="Ej: 65477" pattern="\d+" title="Solo números" required>
+
+      <label for="semestre">Semestre:</label>
+      <input type="number" id="semestre" name="semestre" placeholder="Ej: 6" min="1" max="12" required>
+
+      <label for="celular">Celular:</label>
+      <input type="tel" id="celular" name="celular" placeholder="Ej: 76543210" required>
+
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" name="direccion" placeholder="Ej: CALLE DE LA ROSA N°377 ZONA LAS DELICIAS" required>
+
+      <button type="submit">Enviar registro</button>
+    </form>
+
+    <div id="mensaje" class="mensaje"></div>
+  </div>
+
+  <script>
+    const formulario = document.getElementById('formPasantia');
+    const mensaje = document.getElementById('mensaje');
+
+    formulario.addEventListener('submit', function(evento) {
+      evento.preventDefault();
+      mensaje.textContent = "🎉 ¡Formulario enviado exitosamente!";
+      formulario.reset();
+    });
+  </script>
+
+</body>
+</html>
