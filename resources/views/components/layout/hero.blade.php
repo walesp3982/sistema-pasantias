@@ -15,7 +15,7 @@
         Conectamos estudiantes, empresas y la universidad en un solo lugar.
       </p>
       <div class="flex justify-center md:justify-start gap-4">
-        <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors duration-300">
+        <a href="#beneficios" class="bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors duration-300">
           Comenzar Ahora
         </a>
         <a href="#caracteristicas" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">

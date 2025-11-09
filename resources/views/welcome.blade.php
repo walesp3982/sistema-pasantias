@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="overscroll-none">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    class="overscroll-none scroll-smooth">
 
 <head>
   <meta charset="utf-8">
@@ -8,7 +9,7 @@
   <title>Sistema de Gestión de Pasantías - Universidad Salesiana de Bolivia</title>
 
   <!-- Styles -->
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/js/app.js', 'resources/css/app.css', ])
 </head>
 
 <body>

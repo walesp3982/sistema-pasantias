@@ -72,7 +72,7 @@
 
     function toggleMenu() {
       const isOpen = mobileMenu.classList.contains('translate-y-0');
-      
+
       if (isOpen) {
         closeMenu();
       } else {
@@ -83,13 +83,13 @@
     function openMenu() {
       mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
       mobileMenu.classList.add('translate-y-0', 'opacity-100');
-    
+
     }
 
     function closeMenu() {
       mobileMenu.classList.remove('translate-y-0', 'opacity-100');
       mobileMenu.classList.add('-translate-y-full', 'opacity-0');
-      
+
       // Animación del botón X a hamburguesa
       line1.style.transform = '';
       line2.style.opacity = '1';
@@ -97,7 +97,7 @@
     }
 
     menuToggle.addEventListener('click', toggleMenu);
-    
+
     // Cerrar menú al hacer clic en un enlace
     menuLinks.forEach(link => {
       link.addEventListener('click', closeMenu);

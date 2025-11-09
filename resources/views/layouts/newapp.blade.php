@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
+    @livewireScripts;
     @vite(['resources/css/style.css', 'resources/js/script.js'])
 </head>
 
@@ -19,41 +19,7 @@
     </div>
 
     <!-- Menú lateral -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <img src="{{Vite::asset("resources/images/logo-usb.png")}}" alt="logo salesiana">
-            <h2>Universidad Salesiana de Bolivia</h2>
-            <p>Sistema de Control de Pasantías</p>
-        </div>
-
-        <ul class="menu">
-
-            <li><a href="#"><i class="fa-solid fa-house"></i> Inicio</a></li>
-            <li><a href="#"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a></li>
-
-            <li class="dropdown">
-                <a href="#" class="toggle-sub">
-                    <i class="fa-solid fa-university logo"></i> Nosotros
-                    <i class="fa-solid fa-caret-down"></i>
-                </a>
-                <ul class="sub-menu">
-                    <li><a class="dropdown-item" href="#">Perfil universitario</a></li>
-                    <li><a class="dropdown-item" href="#">Mision y vision</a></li>
-                </ul>
-            </li>
-
-
-            <li><a href="#"><i class="fa-solid fa-chalkboard-user"></i> Tutores</a></li>
-            <li><a href="#"><i class="fa-solid fa-file-lines"></i> Informes</a></li>
-            <li><a href="#"><i class="fa-solid fa-list-check"></i> Seguimiento</a></li>
-            <li><a href="#"><i class="fa-solid fa-chart-line"></i> Reportes</a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
-        </ul>
-
-        <div class="sidebar-footer">
-            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
-        </div>
-    </nav>
+    <livewire:layout.menu-navigation></livewire:layout.menu-navigation>
 
     <!-- Encabezado superior -->
     <header class="topbar">
